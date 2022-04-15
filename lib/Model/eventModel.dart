@@ -9,10 +9,10 @@ class EventModel {
   String? id;
   String? facultyid;
   String? eligibility;
-  DateTime? regstartdate;
-  DateTime? regenddate;
-  DateTime? eventstartdate;
-  DateTime? eventenddate;
+  String? regstartdate;
+  String? regenddate;
+  String? eventstartdate;
+  String? eventenddate;
   String? venue;
   String? discription;
   String? scope;

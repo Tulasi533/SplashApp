@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_app/AdminFlow/AdminHomePage.dart';
 import 'package:splash_app/FacultyFlow/FacultyHomePage.dart';
 import 'package:splash_app/Pages/StudentHomePage.dart';
 import 'package:splash_app/Pages/WelcomePage.dart';
@@ -35,9 +36,15 @@ class _MyAppState extends State<MyApp> {
         print(storage);
       });
     }
-    if(token != null && type == "faculty"){
+    else if(token != null && type == "faculty"){
       setState(() {
         page = FacultyHomePage();
+        print(storage);
+      });
+    }
+    else if(token != null && type == "admin"){
+      setState(() {
+        page = AdminHomePage();
         print(storage);
       });
     }

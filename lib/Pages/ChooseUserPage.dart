@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_app/AdminFlow/AdminLoginPage.dart';
 import 'package:splash_app/FacultyFlow/FacultyLoginPage.dart';
 import 'package:splash_app/StudentFlow/StudentLoginPage.dart';
 
@@ -29,7 +30,12 @@ class _ChooseUserPageState extends State<ChooseUserPage> {
             SizedBox(height: 40),
             InkWell(
               onTap: () {
-                
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => AdminLoginPage()
+                  )
+                );
               },
               child: Container(
                 height: 70,

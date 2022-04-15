@@ -3,24 +3,22 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:splash_app/FacultyFlow/FacultyCreateEventPage.dart';
-import 'package:splash_app/Model/facultyModel.dart';
+import 'package:splash_app/Model/adminModel.dart';
 import 'package:splash_app/NetworkHandler.dart';
 import 'package:splash_app/Pages/WelcomePage.dart';
 
-class FacultyMenuPage extends StatefulWidget {
-  const FacultyMenuPage({ Key? key }) : super(key: key);
+class AdminMenuPage extends StatefulWidget {
+  const AdminMenuPage({ Key? key }) : super(key: key);
 
   @override
-  State<FacultyMenuPage> createState() => _FacultyMenuPageState();
+  State<AdminMenuPage> createState() => _AdminMenuPageState();
 }
 
-class _FacultyMenuPageState extends State<FacultyMenuPage> {
-
+class _AdminMenuPageState extends State<AdminMenuPage> {
   final NetworkHandler networkHandler = NetworkHandler();
   PickedFile? _imageFile;
   final ImagePicker _picker = ImagePicker();
-  FacultyModel facultyModel = FacultyModel();
+  AdminModel adminModel = AdminModel();
   bool circular = true;
   final storage = FlutterSecureStorage();
   @override
@@ -30,9 +28,9 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
   }
 
   void fetchData() async {
-    var response = await networkHandler.get("/faculty/getData");
+    var response = await networkHandler.get("/admin/getData");
     setState(() {
-      facultyModel = FacultyModel.fromJson(response["data"]);
+      adminModel = AdminModel.fromJson(response["data"]);
       circular = false;
     });
   }
@@ -50,12 +48,10 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
             color: Colors.white30,
           ),
           SizedBox(height: 5),
-          otherDetails("Name", facultyModel.name.toString()),
-          otherDetails("Email", facultyModel.email.toString()),
-          otherDetails("Mobile", facultyModel.mobile.toString()),
-          otherDetails("Department", facultyModel.department.toString()),
-          otherDetails("Position", facultyModel.position.toString()),
-          otherDetails("College", facultyModel.college.toString()),
+          otherDetails("Name", adminModel.name.toString()),
+          otherDetails("Email", adminModel.email.toString()),
+          otherDetails("Mobile", adminModel.mobile.toString()),
+          otherDetails("College", adminModel.college.toString()),
           SizedBox(height: 5),
           Divider(
             thickness: 2.0,
@@ -69,15 +65,10 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (context)=> FacultyEventCreatePage()
-                      )
-                    );
+                    
                   },
                   child: Text(
-                    "Create Event",
+                    "Add Student",
                     style: TextStyle(
                       color: Colors.white,
                       letterSpacing: 1,
@@ -117,7 +108,7 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
             children: [
               CircleAvatar(
                 radius: 80.0,
-                backgroundImage: _imageFile == null? NetworkHandler().getImage(facultyModel.facultyid.toString()): FileImage(File(_imageFile!.path)) as ImageProvider
+                backgroundImage: _imageFile == null? NetworkHandler().getImage(adminModel.adminid.toString()): FileImage(File(_imageFile!.path)) as ImageProvider
                 // _imageFile == null? null : FileImage(File(_imageFile!.path)),
                 // FileImage(File(_imageFile.path))
                 // NetworkHandler().getImage(studentModel.regno.toString())
@@ -145,7 +136,7 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
           ),
           SizedBox(height: 10),
           Text(
-            facultyModel.facultyid.toString(),
+            adminModel.adminid.toString(),
             style: TextStyle(
               color: Color(0xFFB3F6A8),
               fontSize: 20,
@@ -208,7 +199,7 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
       
     });
     if(_imageFile != null) {
-      var imageResponse = await networkHandler.patchImage("/faculty/add/image", _imageFile!.path);
+      var imageResponse = await networkHandler.patchImage("/admin/add/image", _imageFile!.path);
     }
     
   }
@@ -250,5 +241,4 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
     await storage.delete(key: "token");
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> WelcomePage()), (route) => false);
   }
-
 }
