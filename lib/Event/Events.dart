@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_app/Event/AboutEvent.dart';
 import 'package:splash_app/Model/eventModel.dart';
 import 'package:splash_app/Model/superModel.dart';
 import 'package:splash_app/NetworkHandler.dart';
@@ -17,6 +18,7 @@ class _EventsState extends State<Events> {
   NetworkHandler networkHandler = NetworkHandler();
   SuperModel superModel = SuperModel();
   List<EventModel>? data = [];
+  String? type;
 
   @override
   void initState() {
@@ -30,6 +32,8 @@ class _EventsState extends State<Events> {
     superModel = SuperModel.fromJson(response);
     setState(() {
       data = superModel.data;
+      type = superModel.type;
+      print(type);
     });
   }
   
@@ -51,7 +55,7 @@ class _EventsState extends State<Events> {
         )
         ),
         data!.length > 0 ? Container(
-          height: 276,
+          height: 200,
           child: ListView.separated(
             padding: EdgeInsets.only(right: 16, top: 16, bottom: 16),
             itemBuilder: (context, index) => buildCard(data![index]), 
@@ -66,27 +70,35 @@ class _EventsState extends State<Events> {
 
   Widget buildCard(EventModel item) {
     return Container(
-      width: 170,
+      width: 140,
       child: Column(
         children: [
           Expanded(
             child: CircleAvatar(
-              radius: 75,
+              radius: 60,
               backgroundImage: networkHandler.getImage(item.id.toString()),
             ),
           ),
           //SizedBox(height: 4),
           Text(
-            item.name.toString(),
+            item.name.toString().toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               fontFamily: "QuickSand",
               fontWeight: FontWeight.bold,
-              color: Color(0xFFFAFCA8)
+              color: Color(0xFFFAFCA8),
+              overflow: TextOverflow.ellipsis
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context)=> AboutEvent(item: item, type: type.toString())
+                )
+              );
+            },
             child: Text(
               "know more",
               style: TextStyle(

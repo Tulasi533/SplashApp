@@ -18,8 +18,8 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       backgroundColor: Color(0xFF09488D),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 120),
           Container(
             padding: EdgeInsets.only(left: 20, right: 20),
             child: Image.asset("assets/images/happy_news.png"),

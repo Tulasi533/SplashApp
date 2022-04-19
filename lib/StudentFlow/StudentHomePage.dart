@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splash_app/Event/Events.dart';
 import 'package:splash_app/StudentFlow/StudentMenuPage.dart';
 
 class StudentHomePage extends StatefulWidget {
@@ -31,6 +32,15 @@ class _StudentHomePageState extends State<StudentHomePage> {
           IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
         ],
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Events(url: "/event/getUpcomingEvents", heading: "Upcoming Events"),
+            Events(url: "/event/getOngoingEvents", heading: "Ongoing Events"),
+            Events(url: "/event/getPastEvents", heading: "Past Events")
+          ]
+        ),
+      )
     );
   }
 }

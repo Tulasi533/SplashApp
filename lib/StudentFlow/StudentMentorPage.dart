@@ -32,6 +32,15 @@ class _StudentMentorPageState extends State<StudentMentorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF09488D),
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.clear, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: circular 
       ? CircularProgressIndicator() 
       : Center(

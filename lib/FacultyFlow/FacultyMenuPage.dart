@@ -237,7 +237,7 @@ class _FacultyMenuPageState extends State<FacultyMenuPage> {
               color: Color(0xFFFFE0E6),
               fontFamily: "QuickSand",
               fontWeight: FontWeight.bold,
-              overflow: TextOverflow.ellipsis
+              overflow: TextOverflow.visible
             ),
           )
           )

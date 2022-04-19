@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splash_app/AdminFlow/AdminMenuPage.dart';
+import 'package:splash_app/Event/Events.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({ Key? key }) : super(key: key);
@@ -31,6 +32,15 @@ class _AdminHomePageState extends State<AdminHomePage> {
           IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
         ],
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Events(url: "/event/getUpcomingEvents", heading: "Upcoming Events"),
+            Events(url: "/event/getOngoingEvents", heading: "Ongoing Events"),
+            Events(url: "/event/getPastEvents", heading: "Past Events")
+          ]
+        ),
+      )
     );
   }
 }

@@ -37,7 +37,9 @@ class _FacultyHomePageState extends State<FacultyHomePage> {
         child: Column(
           children: [
             Events(url: "/event/getUpcomingEvents", heading: "Upcoming Events"),
+            Divider(thickness: 1.5, color: Colors.white),
             Events(url: "/event/getOngoingEvents", heading: "Ongoing Events"),
+            Divider(thickness: 1.5, color: Colors.white),
             Events(url: "/event/getPastEvents", heading: "Past Events")
           ]
         ),
