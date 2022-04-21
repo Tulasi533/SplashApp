@@ -30,6 +30,7 @@ class _AboutEventState extends State<AboutEvent> {
         child: Center(
           child:Column(
             children: [
+              SizedBox(height: 10),
               CircleAvatar(
                 radius: 85,
                 backgroundImage: networkHandler.getImage(widget.item.id.toString()),
@@ -40,7 +41,7 @@ class _AboutEventState extends State<AboutEvent> {
                 style: TextStyle(
                   fontSize: 22,
                   fontFamily: "QuickSand",
-                  color: Colors.white,
+                  color: Color(0xFFFAFCA8),
                   fontWeight: FontWeight.bold
                 ),
               ),
@@ -64,6 +65,13 @@ class _AboutEventState extends State<AboutEvent> {
                 ),
                 width: 380,
                 child:DataTable(
+                  dataTextStyle: TextStyle(
+                    fontFamily: "QuickSand",
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black
+                  ),
+                  dataRowHeight: 80,
                   columnSpacing: 0,
                   headingRowHeight: 0,
                   headingRowColor:MaterialStateColor.resolveWith((states) => Color(0xFFDDDEFE)),
