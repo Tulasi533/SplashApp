@@ -93,7 +93,7 @@ class _FacultyEventCreatePageState extends State<FacultyEventCreatePage> {
                         child: Text(
                           "Preview",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 15,
                             color: Colors.white
                           ),
                         )
@@ -135,7 +135,7 @@ class _FacultyEventCreatePageState extends State<FacultyEventCreatePage> {
   Widget uploadImageField() {
     return Align(
       child:Container(
-        width: 240,
+        width: 230,
         height: 50,
         decoration: BoxDecoration(
           color: Color(0xFFF3BAE7),
@@ -148,7 +148,7 @@ class _FacultyEventCreatePageState extends State<FacultyEventCreatePage> {
               iconphoto,
               size: 30,
             ),
-            SizedBox(width: 15),
+            SizedBox(width: 13),
             Text(
               "Upload Event Poster",
               style: TextStyle(
